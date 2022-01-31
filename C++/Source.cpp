@@ -26,18 +26,11 @@ class DoubleArrayTrie {
 	int getBase(int position) {
 		return base[position];
 	}
-
-	/**
-	 * @see org.digitalstain.datrie.AbstractDoubleArrayTrie#getCheck(int)
-	 */
+		
 	int getCheck(int position) {
 		return check[position];
 	}
-
-	/**
-	 * @see org.digitalstain.datrie.AbstractDoubleArrayTrie#setBase(int, int)
-	 */
-	
+		
 	void setBase(int position, int value) {
 		base[position] = value;
 		if (value == EMPTY_VALUE) {
@@ -48,9 +41,6 @@ class DoubleArrayTrie {
 		}
 	}
 
-	/**
-	 * @see org.digitalstain.datrie.AbstractDoubleArrayTrie#setCheck(int, int)
-	 */
 	void setCheck(int position, int value) {
 		check[position] = value;
 		if (value == EMPTY_VALUE) {
@@ -61,20 +51,13 @@ class DoubleArrayTrie {
 		}
 	}
 
-	/**
-	 * @see org.digitalstain.datrie.AbstractDoubleArrayTrie#getSize()
-	 */
-	
 	int getSize() {
 		return base.size();
 	}
 
 	
 
-	/**
-	 * @see org.digitalstain.datrie.AbstractDoubleArrayTrie#updateChildMove(int, int, int)
-	 */
-		void updateChildMove(int parentIndex, int forCharacter,
+	void updateChildMove(int parentIndex, int forCharacter,
 			int newParentBase) {
 		assert(getCheck(getBase(parentIndex) + forCharacter) == parentIndex);
 	}
@@ -88,14 +71,15 @@ class DoubleArrayTrie {
 		check.push_back(ROOT_CHECK_VALUE);
 		freePositions.clear();
 	}
-	/**
-	 * Constructs a DoubleArrayTrie for the given alphabet length.
-	 *
-	 * @param alphabetLength The size of the set of values that
-	 * 				are to be stored.
-	 */
+	
 	public:
 		DoubleArrayTrie(int _alphabetLength) {
+			/**
+			* Constructs a DoubleArrayTrie for the given alphabet length.
+			*
+			* @param alphabetLength The size of the set of values that
+			* 				are to be stored.
+			*/
 			alphabetLength = _alphabetLength;
 			init();
 		}
@@ -387,7 +371,10 @@ class DoubleArrayTrie {
 		// moved or updated. That which remains is for the state s to show
 		// to its new children
 		setBase(s, newLocation);
+		
 		//updateStateMove(s, newLocation);
+		//there is no implementation of this function in the original code
+		//I hope it's not important
 	}
 
 	
