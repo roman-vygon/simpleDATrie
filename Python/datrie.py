@@ -25,14 +25,16 @@ class DoubleArrayTrie:
         if value == EMPTY_VALUE:
             self.freePositions.add(position)
         else:
-            self.freePositions.remove(position)
+            if position in self.freePositions:
+                self.freePositions.remove(position)
 
     def setCheck(self, position, value):
         self.check[position] = value
         if value == EMPTY_VALUE:
             self.freePositions.add(position)
         else:
-            self.freePositions.remove(position)
+            if position in self.freePositions:
+                self.freePositions.remove(position)
 
     def getSize(self):
         return len(self.base)
@@ -72,6 +74,7 @@ class DoubleArrayTrie:
                 _from = current
                 previous = _from
                 consecutive = 1
+            i += 1
         if consecutive == amount:
             return _from
         else:
@@ -107,7 +110,7 @@ class DoubleArrayTrie:
             transition = self.getBase(state) + c
             assert transition > 0
             self.ensureReachableIndex(transition)
-            if self.getCheck(transition) == EMPTY_VALUE:
+            if self.getCheck(transition) == EMPTY_VALUE:  ##
                 self.setCheck(transition, state)
                 if i == len(string) - 1:
                     self.setBase(transition, LEAF_BASE_VALUE)
@@ -159,7 +162,7 @@ class DoubleArrayTrie:
 def stringToTokens(input):
     output = []
     for i in range(len(input)):
-        output.append(int(input[i] - 'a'))
+        output.append(ord(input[i]) - ord('a'))
     return output
 
 
